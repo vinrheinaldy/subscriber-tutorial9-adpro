@@ -15,14 +15,14 @@ impl MessageHandler<UserCreatedEventMessage> for UserCreatedHandler {
         let ten_millis = time::Duration::from_millis(1000);
         let now = time::Instant::now();
 
-        // thread::sleep(ten_millis);
+        thread::sleep(ten_millis);
 
         println!("In Alvin's computer 2306275866. Message received: {:?}", message);
         Ok(())
     }
     // error otherwise
     fn get_handler_action(&self) -> String {
-        "user_created".to_string()
+        "handle_user_created".to_string()
     }
 }
 

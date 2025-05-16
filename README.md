@@ -13,3 +13,14 @@ String koneksi "guest:guest@localhost:5672" memiliki beberapa komponen:
   
 Dengan kata lain, string tersebut adalah URL koneksi yang digunakan untuk menghubungkan aplikasi ke server RabbitMQ yang berjalan pada komputer lokal, menggunakan kredensial default (username "guest" dan password "guest").
 </details>
+
+### Screenshot
+
+Berikut screenshot dari RabbitMQ dan tiga console yang menjalankan bersamaan
+
+![Overview](image/overview.png)
+![3Instances](image/3instance.png)
+
+Dalam eksperimen ini, kami menjalankan tiga konsol subscriber secara bersamaan, masing-masing mengakses queue yang sama. Hal ini memungkinkan pemrosesan pesan menjadi lebih cepat karena beban pemrosesan dibagi di antara tiga konsumen. Sebelumnya, dengan hanya satu subscriber, antrian pesan meningkat pesat, namun dengan menambahkan lebih banyak subscriber, antrian pesan berkurang lebih cepat. Selain itu juga menunjukkan horizontal scaling dimana saat satu instance sedang memproses user 1 dan user 2, sedangkan instance lain memproses user 3 dan user 4.
+
+Untuk pengembangan ke depan, sistem dapat ditingkatkan dengan meningkatkan kapasitas penskalaan, khususnya melalui implementasi arsitektur yang mendukung distribusi beban kerja yang lebih efisien. Hal ini mencakup optimalisasi mekanisme penerimaan pesan agar dapat menangani lebih banyak instans subscriber secara bersamaan dan menghindari bottleneck yang terjadi ketika pemrosesan terlalu bergantung pada satu instans saja. Dengan pendekatan ini, sistem akan lebih tangguh dalam menghadapi lonjakan traffic dan pertumbuhan data.
